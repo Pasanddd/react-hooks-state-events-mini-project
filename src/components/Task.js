@@ -1,11 +1,18 @@
-import React from "react";
+import React from 'react';
 
-function Task() {
+function Task({ task, onDeleteTask, onEditTask, onToggleComplete }) {
   return (
-    <div className="task">
-      <div className="label">CATEGORY HERE</div>
-      <div className="text">TEXT HERE</div>
-      <button className="delete">X</button>
+    <div>
+      <input
+        type="checkbox"
+        checked={task.completed}
+        onChange={() => onToggleComplete(task)}
+      />
+      <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
+        {task.text}
+      </span>
+      <p>{task.category}</p>
+      <button onClick={() => onDeleteTask(task)}>Delete</button>
     </div>
   );
 }
